@@ -1,6 +1,6 @@
 <section class="todoapp">
   <header class="header">
-      <h1>Contacts</h1>
+    <h1>Contacts</h1>
     <input class="new-todo" placeholder="Contact Name" autofocus="" [(ngModel)]="newPerson.name" (keyup.enter)="addPerson()">
   </header>
   <section class="main" >
@@ -11,7 +11,7 @@
           <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
             -->
           <label>{{person.name}}</label>
-          <button class="destroy" (click)="removeTodo(todo)"></button>
+          <button class="destroy" (click)="deletePerson(person)"></button>
         </div>
       </li>
     </ul>

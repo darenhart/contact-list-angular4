@@ -36,6 +36,14 @@ export class AppComponent implements OnInit {
         this.newPerson = new People();
       });
   }
+
+  deletePerson(person: People): void {
+    this.peopleService.delete(person._id)
+      .then(() => {
+        this.people = this.people.filter(p => p !== person);
+      })
+  }
+
   addTodo() {
   }
 
