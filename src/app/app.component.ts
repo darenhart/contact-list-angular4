@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Todo} from './todo';
 import {People} from './people';
 import {PeopleService} from './people.service';
 
@@ -12,6 +11,7 @@ import {PeopleService} from './people.service';
 export class AppComponent implements OnInit {
 
   newPerson: People = new People();
+  editingPerson: People = new People();
 
   people: People[];
 
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
     if (!this.newPerson.name) { return; }
     this.peopleService.create(this.newPerson)
       .then(person => {
-        this.people.push(person);
+        this.people.unshift(person);
         this.newPerson = new People();
       });
   }
@@ -44,13 +44,8 @@ export class AppComponent implements OnInit {
       })
   }
 
-  addTodo() {
-  }
-
-  toggleTodoComplete(todo) {
-  }
-
-  removeTodo(todo) {
+  editPerson(person: People): void {
+    this.editingPerson = person;
   }
 
 }

@@ -15,9 +15,9 @@ export class PeopleService {
 
   getPeople(): Promise<People[]> {
     return this.http.get(this.peopleUrl)
-               .toPromise()
-      .then(response => {return response.json() as People[]})
-               .catch(this.handleError);
+      .toPromise()
+      .then(response => {return response.json().reverse() as People[]})
+      .catch(this.handleError);
   }
 
   create(person: People): Promise<People> {

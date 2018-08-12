@@ -1,19 +1,35 @@
-<section class="todoapp">
-  <header class="header">
-    <h1>Contacts</h1>
-    <input class="new-todo" placeholder="Contact Name" autofocus="" [(ngModel)]="newPerson.name" (keyup.enter)="addPerson()">
-  </header>
-  <section class="main" >
-    <ul class="todo-list">
-      <li *ngFor="let person of people" >
-        <div class="view">
-            <!--
-          <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-            -->
-          <label>{{person.name}}</label>
-          <button class="destroy" (click)="deletePerson(person)"></button>
-        </div>
-      </li>
-    </ul>
-  </section>
+<section class="jumbotron">
+  <div class="container">
+    <div class="application">
+      <h1 class="jumbotron-heading text-center">Contacts</h1>
+      <div class="form-group">
+        <input class="form-control" placeholder="Contact Name" autofocus="" [(ngModel)]="newPerson.name" (keyup.enter)="addPerson()">
+      </div>
+      <section class="main" >
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let person of people" >
+            <div class="row" *ngIf="editingPerson._id != person._id">
+              <div class="col-8">
+                <h6> {{person.name}} </h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <div class="col-4">
+                <button class="btn btn-light delete" (click)="deletePerson(person)">x</button>
+                <button class="btn btn-light" (click)="editPerson(person)">edit</button>
+              </div>
+            </div>
+            <div class="row" *ngIf="editingPerson._id == person._id">
+              <div class="col-8">
+                <input class="form-control" [(ngModel)]="editingPerson.name" >
+                <button class="btn btn-ligth">+</button>
+              </div>
+              <div class="col-4">
+                <button class="btn btn-light">save</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
 </section>
