@@ -1,6 +1,6 @@
 <section class="jumbotron">
   <div class="container">
-    <div class="application">
+    <div class="contact-list">
       <h1 class="jumbotron-heading text-center">Contacts</h1>
       <div class="form-group">
         <input class="form-control" placeholder="Contact Name" autofocus="" [(ngModel)]="newPerson.name" (keyup.enter)="addPerson()">
@@ -11,20 +11,37 @@
             <div class="row" *ngIf="editingPerson._id != person._id">
               <div class="col-8">
                 <h6> {{person.name}} </h6>
-                <small class="text-muted">Brief description</small>
+                <small class="text-muted contact-view" *ngFor="let contact of person.contacts">{{contact.value}} </small>
               </div>
-              <div class="col-4">
+              <div class="col-4 options">
                 <button class="btn btn-light delete" (click)="deletePerson(person)">x</button>
                 <button class="btn btn-light" (click)="editPerson(person)">edit</button>
               </div>
             </div>
             <div class="row" *ngIf="editingPerson._id == person._id">
               <div class="col-8">
-                <input class="form-control" [(ngModel)]="editingPerson.name" >
-                <button class="btn btn-ligth">+</button>
+                <div class="from-group name-input">
+                  <input class="form-control" [(ngModel)]="editingPerson.name" >
+                </div>
+                <!-- TODO: put this in a new component -->
+                <div class="form-group contact-input row" *ngFor="let contact of person.contacts">
+                  <label class="col-sm-3 col-form-label">{{contact.type}}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" [(ngModel)]="contact.value">
+                  </div>
+                  <div class="col-sm-2">
+                    <button class="btn btn-light delete" (click)="deleteContact(contact)">x</button>
+                  </div>
+                </div>
+                <div class="from-group new-contact">
+                  <button class="btn" (click)="addContact(person, 'email')">+ email</button>
+                  <button class="btn" (click)="addContact(person, 'phone')">+ phone</button>
+                  <button class="btn" (click)="addContact(person, 'whatsapp')">+ whatsapp</button>
+                </div>
               </div>
-              <div class="col-4">
-                <button class="btn btn-light">save</button>
+              <div class="col-4 options">
+                <button class="btn btn-light" (click)="updatePerson(person)">save</button>
+                <button class="btn btn-light" (click)="cancelEdition(person)">cancel</button>
               </div>
             </div>
           </li>

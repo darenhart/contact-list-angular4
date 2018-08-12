@@ -3,45 +3,45 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { People } from './people';
+import { Contact } from './contact';
 
 @Injectable()
-export class PeopleService {
+export class ContactService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private peopleUrl = 'http://localhost:8000/api/people';
+  private contactUrl = 'http://localhost:8000/api/contact';
 
   constructor(private http: Http) { }
 
-  getPeople(): Promise<People[]> {
-    return this.http.get(this.peopleUrl)
+  getContacts(): Promise<Contact[]> {
+    return this.http.get(this.contactUrl)
       .toPromise()
-      .then(response => {return response.json().reverse() as People[]})
+      .then(response => {return response.json().reverse() as Contact[]})
       .catch(this.handleError);
   }
 
-  create(person: People): Promise<People> {
+  update(contact: Contact): Promise<Contact> {
+    const url = `${this.contactUrl}/${contact._id}`;
     return this.http
-      .post(this.peopleUrl, person, {headers: this.headers})
+      .put(url, contact, {headers: this.headers})
       .toPromise()
-      .then(res => res.json().person as People)
+      .then(() => contact)
       .catch(this.handleError);
   }
 
   delete(id: String): Promise<void> {
-    const url = `${this.peopleUrl}/${id}`;
+    const url = `${this.contactUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);
   }
 
-  update(person: People): Promise<People> {
-    const url = `${this.peopleUrl}/${person._id}`;
+  create(contact: Contact): Promise<Contact> {
     return this.http
-      .put(url, person, {headers: this.headers})
+      .post(this.contactUrl, contact, {headers: this.headers})
       .toPromise()
-      .then(() => person)
+      .then(res => res.json().contact as Contact)
       .catch(this.handleError);
   }
 
