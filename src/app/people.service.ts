@@ -20,6 +20,13 @@ export class PeopleService {
                .catch(this.handleError);
   }
 
+  create(person: People): Promise<People> {
+    return this.http
+      .post(this.peopleUrl, JSON.stringify(person), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().person as People)
+      .catch(this.handleError);
+  }
 
         /*
   getHero(id: number): Promise<Hero> {
@@ -35,14 +42,6 @@ export class PeopleService {
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
-      .catch(this.handleError);
-  }
-
-  create(name: string): Promise<Hero> {
-    return this.http
-      .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
-      .toPromise()
-      .then(res => res.json().data as Hero)
       .catch(this.handleError);
   }
 

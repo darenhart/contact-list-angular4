@@ -11,7 +11,7 @@ import {PeopleService} from './people.service';
 })
 export class AppComponent implements OnInit {
 
-  newTodo: Todo = new Todo();
+  newPerson: People = new People();
 
   people: People[];
 
@@ -25,9 +25,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void{
     this.getPeople();
-    console.log('on init teste'); 
   }
 
+  addPerson(): void {
+    this.newPerson.name = this.newPerson.name.trim();
+    if (!this.newPerson.name) { return; }
+    this.peopleService.create(this.newPerson)
+      .then(person => {
+        this.people.push(person);
+        this.newPerson = new People();
+      });
+  }
   addTodo() {
   }
 
