@@ -91,8 +91,10 @@ export class AppComponent implements OnInit {
       .then(() => {
         this.people = this.people.filter(p => p !== person);
       })
-    for(let contact of person.contacts) {
-      this.contactService.delete(contact._id);
+    if (person.contacts) {
+      for(let contact of person.contacts) {
+        this.contactService.delete(contact._id);
+      }
     }
   }
 
@@ -106,6 +108,7 @@ export class AppComponent implements OnInit {
   }
 
   editPerson(person: People): void {
+    // TODO: refactor this
     person.contacts = person.contacts ? person.contacts : [];
     this.editingPerson = person;
     this.editingPersonOld = new People();
@@ -113,6 +116,8 @@ export class AppComponent implements OnInit {
     this.editingPersonOld.contacts = [];
     for(let contact of person.contacts) {
       let editingContact = new Contact();
+      editingContact._id = contact._id + "";
+      editingContact.person_id = contact.person_id + "";
       editingContact.type = contact.type + "";
       editingContact.value = contact.value + "";
       this.editingPersonOld.contacts.push(editingContact);
