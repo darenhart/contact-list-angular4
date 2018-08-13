@@ -1,0 +1,14 @@
+<section class="brackets">
+  <div class="container">
+    <h1>
+      Balanced Brackets
+    </h1>
+    <div>
+      <input class="form-control" placeholder="Enter a string of brackets" [(ngModel)]="brackets" (keyup)="validate(brackets)">
+      <div>
+        <label>Is Valid: </label>
+        {{isValid}}
+      </div>
+    </div>
+  </div>
+</section>

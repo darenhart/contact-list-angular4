@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { BracketsComponent } from './brackets.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BracketsComponent
   ],
   imports: [
     BrowserModule,
@@ -15,6 +17,6 @@ import { AppComponent } from './app.component';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, BracketsComponent]
 })
 export class AppModule { }
