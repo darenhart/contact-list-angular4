@@ -1,10 +1,10 @@
 # Contact list
 
-#### install
+### install
 `npm install`
 
-#### serve
+### serve
 `npm start`
 
-#### open
+### open
 http://localhost:4200/
