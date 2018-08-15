@@ -15,4 +15,4 @@ I couldn't initialize an angular4 project with the latest angular CLI so I've fo
 http://localhost:4200/
 
 ### docker
-`docker pull darenhart/contact-list-brakets-angular4:part1`
+`docker pull darenhart/contact-list-brakets-angular4:part1` -> TODO
