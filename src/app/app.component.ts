@@ -1,16 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {People} from './people';
-import {Contact} from './contact';
-import {PeopleService} from './people.service';
-import {ContactService} from './contact.service';
+import {People} from './model/people';
+import {Contact} from './model/contact';
+import {PeopleService} from './service/people.service';
+import {ContactService} from './service/contact.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: './view/app.component.html',
+  styleUrls: ['./scss/app.component.scss'],
   providers: [PeopleService, ContactService]
 })
 export class AppComponent implements OnInit {
 
+  searchText: string = '';
   newPerson: People = new People();
   editingPerson: People = new People();
   editingPersonOld: People = new People();
@@ -52,6 +54,7 @@ export class AppComponent implements OnInit {
       .then(person => {
         this.people.unshift(person);
         this.newPerson = new People();
+        this.editPerson(person);
       });
   }
 
@@ -100,7 +103,7 @@ export class AppComponent implements OnInit {
   deleteContact(contact: Contact): void {
     this.removingContacts.push(contact._id);
     for(let person of this.people) {
-      if (contact.person_id == person._id) {
+      if (contact.person_id == person._id || !contact._id) {
         person.contacts = person.contacts.filter(c => c !== contact);
       }
     }

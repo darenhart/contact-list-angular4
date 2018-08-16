@@ -3,34 +3,3 @@
 body {
   background-color: #ddd;
 }
-
-.contact-list {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-
-  .delete {
-    color: #af5b5e;
-  }
-
-  .options button {
-    float: right;
-    height: 100%;
-    min-width: 55px;
-    margin-left: 4px;
-  }
-
-  .name-input {
-    margin-bottom: 1rem;
-  }
-  .contact-input {
-    margin-bottom: 3px;
-    input {
-      max-width: 300px;
-      max-height: 32px;
-    }
-  }
-  .contact-view {
-    margin-right: 7px;
-  }
-}

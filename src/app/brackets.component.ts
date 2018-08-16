@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'brackets',
-  templateUrl: './brackets.component.html',
-  styleUrls: ['./brackets.component.scss'],
+  templateUrl: './view/brackets.component.html',
+  styleUrls: ['./scss/brackets.component.scss'],
   providers: []
 })
 export class BracketsComponent {
@@ -19,7 +18,7 @@ export class BracketsComponent {
 
     this.isValid = true;
     if (str.length <= 1)
-      return this.isValid = false;
+      this.isValid = false;
 
     let matchingOpeningBracket, brk;
     let stack = [];
