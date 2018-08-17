@@ -10,15 +10,13 @@
         </div>
         <div class="col-4">
           <div class="form-group">
-            <!--
             <input class="form-control" placeholder="Search" autofocus="" [(ngModel)]="searchText">
-            -->
           </div>
         </div>
       </div>
       <section class="main" >
         <ul class="list-group list-group-flush">
-          <li class="list-group-item" *ngFor="let person of people" >
+          <li class="list-group-item" *ngFor="let person of people | filter: searchText" >
             <div class="row" *ngIf="editingPerson._id != person._id">
               <div class="col-8">
                 <h6> {{person.name}} </h6>

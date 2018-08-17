@@ -5,9 +5,11 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BracketsComponent } from './brackets.component';
+import { FilterPipe} from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
+    FilterPipe,
     AppComponent,
     BracketsComponent
   ],
