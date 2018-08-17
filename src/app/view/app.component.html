@@ -5,6 +5,7 @@
       <div class="row">
         <div class="col-8">
           <div class="form-group">
+            <div class="loading" *ngIf="loading">*</div>
             <input class="form-control" placeholder="Enter new contact name" autofocus="" [(ngModel)]="newPerson.name" (keyup.enter)="addPerson()">
           </div>
         </div>

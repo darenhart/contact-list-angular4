@@ -13,6 +13,7 @@ import {ContactService} from './service/contact.service';
 export class AppComponent implements OnInit {
 
   searchText: string = '';
+  loading: boolean = false;
   newPerson: People = new People();
   editingPerson: People = new People();
   editingPersonOld: People = new People();
@@ -50,8 +51,10 @@ export class AppComponent implements OnInit {
   addPerson(): void {
     this.newPerson.name = this.newPerson.name.trim();
     if (!this.newPerson.name) { return; }
+    this.loading = true;
     this.peopleService.create(this.newPerson)
       .then(person => {
+        this.loading = false;
         this.people.unshift(person);
         this.newPerson = new People();
         this.editPerson(person);
@@ -71,7 +74,12 @@ export class AppComponent implements OnInit {
         this.contactService.update(contact);
       } else {
         contact.person_id = person._id;
-        this.contactService.create(contact);
+        if (contact.value) {
+          this.contactService.create(contact).then((c) => {
+            contact._id = c._id;
+            console.log(c._id);
+          });
+        }
       }
     }
     for(let id of this.removingContacts) {
