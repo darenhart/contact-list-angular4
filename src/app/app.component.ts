@@ -77,7 +77,6 @@ export class AppComponent implements OnInit {
         if (contact.value) {
           this.contactService.create(contact).then((c) => {
             contact._id = c._id;
-            console.log(c._id);
           });
         }
       }
@@ -118,19 +117,12 @@ export class AppComponent implements OnInit {
   }
 
   editPerson(person: People): void {
-    // TODO: refactor this
     person.contacts = person.contacts ? person.contacts : [];
     this.editingPerson = person;
-    this.editingPersonOld = new People();
-    this.editingPersonOld.name = person.name + "";
+    this.editingPersonOld = Object.assign({}, person);
     this.editingPersonOld.contacts = [];
     for(let contact of person.contacts) {
-      let editingContact = new Contact();
-      editingContact._id = contact._id + "";
-      editingContact.person_id = contact.person_id + "";
-      editingContact.type = contact.type + "";
-      editingContact.value = contact.value + "";
-      this.editingPersonOld.contacts.push(editingContact);
+      this.editingPersonOld.contacts.push(Object.assign({}, contact));
     }
   }
 
