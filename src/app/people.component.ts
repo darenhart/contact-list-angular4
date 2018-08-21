@@ -6,11 +6,11 @@ import {ContactService} from './service/contact.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './view/app.component.html',
-  styleUrls: ['./scss/app.component.scss'],
+  templateUrl: './view/people.component.html',
+  styleUrls: ['./scss/people.component.scss'],
   providers: [PeopleService, ContactService]
 })
-export class AppComponent implements OnInit {
+export class PeopleComponent implements OnInit {
 
   searchText: string = '';
   loading: boolean = false;
@@ -121,9 +121,9 @@ export class AppComponent implements OnInit {
     this.editingPerson = person;
     this.editingPersonOld = Object.assign({}, person);
     this.editingPersonOld.contacts = [];
-    for(let contact of person.contacts) {
+    person.contacts.map((contact) => {
       this.editingPersonOld.contacts.push(Object.assign({}, contact));
-    }
+    });
   }
 
 }

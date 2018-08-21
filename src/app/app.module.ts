@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { PeopleComponent } from './people.component';
 import { BracketsComponent } from './brackets.component';
 import { FilterPipe} from './pipe/filter.pipe';
 
 @NgModule({
   declarations: [
     FilterPipe,
-    AppComponent,
+    PeopleComponent,
     BracketsComponent
   ],
   imports: [
@@ -19,6 +19,6 @@ import { FilterPipe} from './pipe/filter.pipe';
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent, BracketsComponent]
+  bootstrap: [PeopleComponent, BracketsComponent]
 })
 export class AppModule { }
